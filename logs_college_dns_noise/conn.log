@@ -1,0 +1,23 @@
+#separator \x09
+#set_separator	,
+#empty_field	(empty)
+#unset_field	-
+#path	conn
+#open	2026-05-22-16-17-00
+#fields	ts	uid	id.orig_h	id.orig_p	id.resp_h	id.resp_p	proto	service	duration	orig_bytes	resp_bytes	conn_state	local_orig	local_resp	missed_bytes	history	orig_pkts	orig_ip_bytes	resp_pkts	resp_ip_bytes	tunnel_parents	ip_proto
+#types	time	string	addr	port	addr	port	enum	string	interval	count	count	string	bool	bool	count	string	count	count	count	count	set[string]	count
+1755685851.000000	CIXFwb4IEiLcNbwUe	192.168.56.101	53000	8.8.8.8	53	udp	dns	-	-	-	S0	T	F	0	D	1	60	0	0	-	17
+1755685851.021390	CagXo34Ax50uBruLuk	192.168.56.101	53001	8.8.8.8	53	udp	dns	-	-	-	S0	T	F	0	D	1	57	0	0	-	17
+1755685851.034090	CVhwGV27VK73RK4N97	192.168.56.101	53002	8.8.8.8	53	udp	dns	-	-	-	S0	T	F	0	D	1	62	0	0	-	17
+1755685851.072195	CnQtAw4n9o0YjyR5Ab	192.168.56.101	53003	8.8.8.8	53	udp	dns	-	-	-	S0	T	F	0	D	1	60	0	0	-	17
+1755685851.079231	CfTnAl7xQX00rN6G5	192.168.56.101	53004	8.8.8.8	53	udp	dns	-	-	-	S0	T	F	0	D	1	61	0	0	-	17
+1755685851.104973	CxAZre157lE9RNimu3	192.168.56.101	53005	8.8.8.8	53	udp	dns	-	-	-	S0	T	F	0	D	1	66	0	0	-	17
+1755685851.127796	C9J0823Z33gwLAvHfk	192.168.56.101	53006	8.8.8.8	53	udp	dns	-	-	-	S0	T	F	0	D	1	71	0	0	-	17
+1755685851.140290	C8gLdx3bTG9oEB3lq6	192.168.56.101	53007	8.8.8.8	53	udp	dns	-	-	-	S0	T	F	0	D	1	62	0	0	-	17
+1755685851.174192	CsTqqV2RqgoQaj40B7	192.168.56.101	53008	8.8.8.8	53	udp	dns	-	-	-	S0	T	F	0	D	1	54	0	0	-	17
+1755685851.216185	CeaWf63GCGpv7PDsq1	192.168.56.101	53009	8.8.8.8	53	udp	dns	-	-	-	S0	T	F	0	D	1	66	0	0	-	17
+1755685851.262334	C7wlGd2FInaIUZoEXg	192.168.56.101	53010	8.8.8.8	53	udp	dns	-	-	-	S0	T	F	0	D	1	67	0	0	-	17
+1755685851.304864	CTmz161pojK3aHuKYi	192.168.56.101	53011	8.8.8.8	53	udp	dns	-	-	-	S0	T	F	0	D	1	72	0	0	-	17
+1755685851.354575	CaMvIC4YvighGGZhri	192.168.56.101	53012	8.8.8.8	53	udp	dns	0.035759	34	75	SF	T	F	0	Dd	1	62	1	103	-	17
+1755685851.434473	CDJQ1cLQ3abNnAbv2	192.168.56.101	8	1.1.1.1	0	icmp	-	0.122185	60	0	OTH	T	F	0	-	6	228	0	0	-	1
+#close	2026-05-22-16-17-00
