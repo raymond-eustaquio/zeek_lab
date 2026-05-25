@@ -15,9 +15,12 @@ The goal is to show how to take raw packet data → generate Zeek logs → parse
 
 ## Project Structure
 
+```
 zeek_lab/
-├── pcaps/           # Sample PCAPs used for analysis
-├── logs/            # Zeek logs generated from the PCAPs
-├── scripts/         # Custom tools (pretty-printer, helpers, etc.)
-├── Dockerfile       # Reproducible Zeek environment
-└── README.md        # Project documentation
+  ├── pcaps/           # Sample PCAPs used for analysis
+  ├── logs/            # Zeek logs generated from the PCAPs
+  ├── scripts/         # Custom tools (pretty-printer, helpers, etc.)
+  ├── Dockerfile       # Reproducible Zeek environment
+  └── README.md        # Project documentation
+```
+
