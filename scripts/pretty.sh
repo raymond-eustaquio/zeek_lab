@@ -24,7 +24,7 @@ done
 printf "\n"
 
 # Process log with zeek-cut (preserves tabs)
-zeek-cut -d -U < "$LOGFILE" | grep -v "^#" | while IFS=$'\t' read -r -a ROW; do
+zeek-cut -d -r < "$LOGFILE" | grep -v "^#" | while IFS=$'\t' read -r -a ROW; do
     for ((i=0; i<${#COLS[@]}; i++)); do
         printf "%-30s" "${ROW[i]}"
     done
