@@ -8,7 +8,7 @@ flowchart TD
     end
 
     subgraph ZEEK_LAYER["Zeek Processing Layer"]
-        ZEEK_NODE["Zeek 8.0.5<br/>• zeek -C -r *.pcap<br/>• generates TSV logs"]
+        ZEEK_NODE["Zeek 8.0.5<br/>• zeek -r *.pcap<br/>• generates TSV logs"]
         LOGS["Zeek Logs Directory<br/>logs_college_dns_noise/<br/>• dns.log<br/>• conn.log<br/>• weird.log"]
         ZEEK_NODE --> LOGS
     end
