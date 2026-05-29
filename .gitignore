@@ -1,0 +1,28 @@
+# Ignore compressed archives
+*.tgz
+*.tar
+*.tar.gz
+*.gz
+*.zip
+*.7z
+
+# Ignore installers (Splunk, Zeek, etc.)
+*.deb
+*.rpm
+*.pkg
+*.bin
+
+# Ignore PCAPs
+*.pcap
+*.pcapng
+
+# Ignore Zeek logs
+logs_college_dns_noise/
+*.log
+
+# Ignore generated images
+*.png
+
+# Ignore Python cache
+__pycache__/
+*.pyc
