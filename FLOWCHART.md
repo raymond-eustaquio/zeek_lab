@@ -7,10 +7,10 @@ flowchart TD
         PCAP["PCAP Input<br/>• college_dns_noise.pcap<br/>• offline analysis"]
     end
 
-    subgraph ZEEK["Zeek Processing Layer"]
-        ZEEK["Zeek 8.0.5<br/>• zeek -C -r *.pcap<br/>• generates TSV logs"]
+    subgraph ZEEK_LAYER["Zeek Processing Layer"]
+        ZEEK_NODE["Zeek 8.0.5<br/>• zeek -C -r *.pcap<br/>• generates TSV logs"]
         LOGS["Zeek Logs Directory<br/>logs_college_dns_noise/<br/>• dns.log<br/>• conn.log<br/>• weird.log"]
-        ZEEK --> LOGS
+        ZEEK_NODE --> LOGS
     end
 
     %% Python Analysis Path
@@ -36,7 +36,7 @@ flowchart TD
     end
 
     %% Main Flow
-    PCAP -->|zeek -C -r| ZEEK
+    PCAP -->|zeek -C -r| ZEEK_NODE
     LOGS -->|monitor input| MON
     MON -->|raw events| TA
     TA -->|parsed events| INDEX
