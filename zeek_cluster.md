@@ -2,11 +2,44 @@
 
 This document describes the modern Zeek cluster layout including Manager, Proxy, Workers, and NIC capture methods (AF_PACKET, PF_RING, DPDK, XDP).
 
+---
+
 ## ASCII Diagram (Original)
 
 ```text
-<your ASCII diagram here>
+                 ┌──────────────────────────┐
+                 │        Manager           │
+                 │  - config distribution   │
+                 │  - log aggregation       │
+                 │  - cluster control       │
+                 └─────────────▲────────────┘
+                               │ Broker
+                               │ Messaging
+                 ┌─────────────┴────────────┐
+                 │          Proxy            │
+                 │  - event routing          │
+                 │  - state synchronization  │
+                 │  - load balancing         │
+                 └─────────────▲────────────┘
+                               │ Broker
+                               │ Messaging
+        ┌──────────────────────┼────────────────────────┐
+        │                      │                        │
+┌───────┴───────┐     ┌───────┴───────┐        ┌───────┴───────┐
+│    Worker 1    │     │    Worker 2    │        │    Worker N    │
+│  zeek -i eth0  │     │  zeek -i eth1  │        │  zeek -i ethX  │
+│  AF_PACKET     │     │  PF_RING       │        │  AF_PACKET     │
+└───────▲────────┘     └───────▲────────┘        └───────▲────────┘
+        │                        │                         │
+        │                        │                         │
+   NIC / Capture            NIC / Capture             NIC / Capture
+   ─────────────            ─────────────             ─────────────
+   • AF_PACKET              • PF_RING                 • AF_PACKET
+   • PF_RING                • DPDK (optional)         • XDP (optional)
+   • libpcap                • libpcap                 • PF_RING ZC
 ```
+
+---
 
 ## Mermaid Diagram (Rendered on GitHub)
 
