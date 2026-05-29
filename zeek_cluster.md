@@ -38,7 +38,6 @@ This document describes the modern Zeek cluster layout including Manager, Proxy,
    • PF_RING                • DPDK (optional)         • XDP (optional)
    • libpcap                • libpcap                 • PF_RING ZC
 ```
-
 ---
 
 ## Mermaid Diagram (Rendered on GitHub)
