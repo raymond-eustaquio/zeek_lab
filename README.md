@@ -17,10 +17,18 @@ The goal is to show how to take raw packet data → generate Zeek logs → parse
 
 ```
 zeek_lab/
-  ├── pcaps/           # Sample PCAPs used for analysis
-  ├── logs/            # Zeek logs generated from the PCAPs
-  ├── scripts/         # Custom tools (pretty-printer, helpers, etc.)
-  ├── Dockerfile       # Reproducible Zeek environment
-  └── README.md        # Project documentation
+  ├── pcaps/                     
+  ├── logs_college_dns_noise/    
+  ├── scripts/                   
+  │     ├── dns_analysis.py      
+  │     ├── reset_lab.py         
+  │     ├── process_pcaps.sh     
+  │     ├── pretty.sh            
+  │     └── pretty_all.sh        
+  ├── integrations/              # NEW
+  │     └── splunk/              # Future Splunk API integration
+  ├── .gitignore                 
+  ├── README.md                  
+  └── project_structure.md       
 ```
 
