@@ -13,7 +13,7 @@ for pcap in *.pcap; do
 
     mkdir -p "$outdir"
 
-    zeek -r "$pcap" Log::default_logdir="$outdir"
+    zeek -C -r "$pcap" Log::default_logdir="$outdir"
 done
 
 echo "All PCAPs processed."
