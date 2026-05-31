@@ -13,15 +13,22 @@ The workflow includes:
   (`dns.log`, `conn.log`, `weird.log`, etc.).
 
 - **Custom analysis and formatting scripts**  
-  Tools for converting Zeek logs to JSON, cleaning output, and preparing data for analysis.
+  Tools for converting Zeek logs to JSON, cleaning output, generating terminal summaries,  
+  and producing visualizations such as `dns_top_domains.png`.
+
+- **Splunk ingestion and dashboards**  
+  A Splunk monitor input ingests Zeek logs, the TA‑Zeek add‑on parses fields,  
+  and dashboards provide DNS analytics and search workflows.
 
 - **A reproducible environment**  
-  Optional Dockerfile, reset scripts, and a status‑check script ensure the lab can be reset and rerun consistently.
+  Optional Dockerfile, reset scripts, and a status‑check script ensure the lab can be reset  
+  and rerun consistently.
 
 - **A Jupyter Notebook analysis workflow**  
-  A guided notebook (`dns_analysis_demo.ipynb`) that loads `dns.json`, explores DNS behavior, filters events, and visualizes top domains.
+  A guided notebook (`dns_analysis_demo.ipynb`) that loads `dns.json`, explores DNS behavior,  
+  filters events, and visualizes top domains.
 
-The goal of this project is to show how to take **raw packet data → generate Zeek logs → parse them → analyze DNS behavior** using a combination of automation, scripting, and interactive analysis.
+The goal of this project is to show how to take **raw packet data → generate Zeek logs → parse them → analyze DNS behavior** using a combination of automation, scripting, Splunk ingestion, and interactive notebook analysis.
 
 ---
 
