@@ -15,7 +15,7 @@ flowchart TD
 
     %% Python Analysis Path
     subgraph PY["Python Analysis Layer"]
-        PY_SCRIPT["dns_analysis.py<br/>• pandas DataFrame<br/>• timestamp parsing<br/>• top domains<br/>• NXDOMAIN rate"]
+        PY_SCRIPT["dns_analysis.py<br/>• pandas DataFrame<br/>• timestamp parsing<br/>• top domains"]
         DF["Pandas DataFrame<br/>• df.head()<br/>• df.describe()"]
         PNG["Matplotlib Output<br/>dns_top_domains.png"]
         PY_SCRIPT --> DF --> PNG
