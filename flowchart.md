@@ -3,44 +3,45 @@
 ```mermaid
 flowchart TD
 
-    subgraph CAPTURE["Packet Capture Layer"]
-        PCAP["PCAP Input\n• college_dns_noise.pcap\n• offline analysis"]
-    end
+    %% ============================
+    %% PCAP → Zeek → Logs Pipeline
+    %% ============================
 
-    subgraph ZEEK_LAYER["Zeek Processing Layer"]
-        ZEEK_NODE["Zeek 8.0.5\n• zeek -C -r *.pcap\n• generates TSV logs"]
-        LOGS["Zeek Logs Directory\nlogs_college_dns_noise/\n• dns.log\n• conn.log\n• weird.log"]
-        ZEEK_NODE --> LOGS
-    end
+    PCAP["PCAP Input<br/>• college_dns_noise.pcap<br/>• offline analysis"]
+    ZEEK["Zeek Processing<br/>• zeek -C -r *.pcap<br/>• generates TSV logs"]
+    LOGS["Zeek Logs Directory<br/>logs_college_dns_noise/<br/>• dns.log<br/>• conn.log<br/>• weird.log"]
 
-    %% Python Analysis Path
-    subgraph PY["Python Analysis Layer"]
-        PY_SCRIPT["dns_analysis.py\n• pandas DataFrame\n• timestamp parsing\n• top domains"]
-        DF["Pandas DataFrame\n• df.head()\n• df.describe()"]
-        PNG["Matplotlib Output\ndns_top_domains.png"]
-        PY_SCRIPT --> DF --> PNG
-    end
+    %% ============================
+    %% Reset + Pipeline Scripts
+    %% ============================
 
-    %% Splunk Ingestion Path
-    subgraph SPLUNK_INGEST["Splunk Ingestion Layer"]
-        MON["Splunk Monitor Input\nmonitor:///logs_college_dns_noise\n• watches directory\n• re-ingests on restart"]
-    end
+    RESET["reset_lab.py<br/>• wipes logs<br/>• removes PNGs<br/>• safe reset"]
+    PIPE["process_pcaps.sh<br/>• runs Zeek<br/>• regenerates logs"]
 
-    subgraph PARSING["TA‑Zeek Parsing Layer"]
-        TA["Splunk TA‑Zeek\n• sourcetype mapping\n• field extraction\n• props/transforms"]
-    end
+    %% ============================
+    %% Demo Status Check
+    %% ============================
 
-    subgraph INDEXING["Index & Search Layer"]
-        INDEX["Splunk Index: zeek_lab\n• parsed events\n• searchable fields"]
-        SEARCH["Dashboards & SPL\n• DNS analytics\n• conn-state analysis\n• exfil detection"]
-    end
+    DEMO["demo_status_check.py<br/>• checks Splunk status<br/>• checks Jupyter<br/>• verifies dns.json<br/>• verifies notebook<br/>• verifies logs + PCAP"]
 
-    %% Main Flow
-    PCAP -->|zeek -C -r| ZEEK_NODE
-    LOGS -->|monitor input| MON
-    MON -->|raw events| TA
-    TA -->|parsed events| INDEX
-    INDEX -->|SPL queries| SEARCH
+    %% ============================
+    %% Analysis Paths
+    %% ============================
 
-    %% Python Branch
-    LOGS -->|offline analysis| PY_SCRIPT
+    JSON["dns.json<br/>• converted from dns.log<br/>• used by pandas"]
+    NB["dns_analysis_demo.ipynb<br/>• Jupyter analysis<br/>• filtering<br/>• charts"]
+    SPLUNK["Splunk Ingestion<br/>• monitor input<br/>• TA-Zeek parsing<br/>• dashboards"]
+
+    %% ============================
+    %% Edges
+    %% ============================
+
+    PCAP --> ZEEK --> LOGS
+    RESET --> PIPE --> LOGS
+
+    LOGS --> JSON
+    LOGS --> SPLUNK
+
+    PIPE --> DEMO
+    DEMO --> NB
+    DEMO --> SPLUNK

@@ -16,7 +16,7 @@
 *.pcap
 *.pcapng
 
-# Ignore Zeek logs
+# Ignore Zeek logs (generated)
 logs_college_dns_noise/
 *.log
 
@@ -26,3 +26,16 @@ logs_college_dns_noise/
 # Ignore Python cache
 __pycache__/
 *.pyc
+
+# Ignore Jupyter autosave checkpoints
+.ipynb_checkpoints/
+
+# Ignore VSCode settings (if you use it)
+.vscode/
+
+# Ignore temporary notebook outputs (optional)
+*.nbconvert.ipynb
+
+# Ignore OS junk
+.DS_Store
+Thumbs.db
