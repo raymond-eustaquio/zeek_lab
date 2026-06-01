@@ -4,19 +4,12 @@ import subprocess
 
 print("\n=== DEMO STATUS CHECK ===\n")
 
-# 1. Check Splunk status
+# 1. Splunk status (demo-safe)
 print("Checking Splunk status...")
-try:
-    result = subprocess.run(
-        ["sudo", "/opt/splunk/bin/splunk", "status"],
-        capture_output=True, text=True
-    )
-    print(result.stdout)
-except Exception as e:
-    print(f"Error checking Splunk: {e}")
+print("Demo mode: Splunk status check skipped.\n")
 
 # 2. Check Jupyter Notebook status
-print("\nChecking Jupyter Notebook status...")
+print("Checking Jupyter Notebook status...")
 try:
     result = subprocess.run(
         ["pgrep", "-fl", "jupyter-notebook"],
