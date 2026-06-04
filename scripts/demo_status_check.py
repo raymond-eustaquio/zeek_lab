@@ -8,18 +8,18 @@ print("\n=== DEMO STATUS CHECK ===\n")
 print("Checking Splunk status...")
 print("Demo mode: Splunk status check skipped.\n")
 
-# 2. Check Jupyter Notebook status
-print("Checking Jupyter Notebook status...")
+# 2. Check Jupyter Lab status
+print("Checking Jupyter Lab status...")
 try:
     result = subprocess.run(
-        ["pgrep", "-fl", "jupyter-notebook"],
+        ["pgrep", "-fl", "jupyter-lab"],
         capture_output=True, text=True
     )
     if result.stdout.strip():
-        print("Jupyter Notebook is running:")
+        print("Jupyter Lab is running:")
         print(result.stdout)
     else:
-        print("Jupyter Notebook is NOT running.")
+        print("Jupyter Lab is NOT running.")
 except Exception as e:
     print(f"Error checking Jupyter: {e}")
 
