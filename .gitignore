@@ -1,4 +1,4 @@
-# Ignore compressed archives
+# Archives
 *.tgz
 *.tar
 *.tar.gz
@@ -6,41 +6,40 @@
 *.zip
 *.7z
 
-# Ignore installers (Splunk, Zeek, etc.)
+# Installers (Splunk, Zeek, etc.)
 *.deb
 *.rpm
 *.pkg
 *.bin
 
-# Ignore PCAPs
+# PCAPs
 *.pcap
 *.pcapng
 
-# Ignore Zeek logs (generated)
+# Zeek logs
 logs_college_dns_noise/
 *.log
 
-# Ignore generated images
+# Generated images
 *.png
 
-# Ignore Python cache
+# Python cache
 __pycache__/
 *.pyc
 
-# Ignore Jupyter autosave checkpoints
+# Jupyter autosave checkpoints
 .ipynb_checkpoints/
 
-# Ignore VSCode settings (if you use it)
+# VSCode settings
 .vscode/
 
-# Ignore temporary notebook outputs (optional)
+# Notebook outputs (optional)
 *.nbconvert.ipynb
 
-# Ignore OS junk
+# OS junk
 .DS_Store
 Thumbs.db
 
-# Ignore json
-*.secret.json
-config.local.json
-cache/*.json
+# JSON files (all forms)
+*.json
+*.json.*
