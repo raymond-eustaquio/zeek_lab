@@ -7,12 +7,19 @@ print("\n=== DEMO STATUS CHECK ===\n")
 # ---------------------------------------------------------
 # Resolve directories (Docker + host friendly)
 # ---------------------------------------------------------
-LAB_DIR = os.getenv("LAB_DIR", "/zeek_lab")
-LOG_ROOT = os.getenv("LOG_ROOT", os.path.join(LAB_DIR, "logs"))
-GENERATED_DIR = os.getenv("GENERATED_DIR", os.path.join(LAB_DIR, "data/generated"))
-PCAP_DIR = os.getenv("PCAP_DIR", os.path.join(LAB_DIR, "pcaps"))
-SCRIPTS_DIR = os.path.join(LAB_DIR, "scripts")
-NOTEBOOKS_DIR = os.path.join(LAB_DIR, "notebooks")
+from pathlib import Path
+
+print("\n=== DEMO STATUS CHECK ===\n")
+
+# Determine project root dynamically (zeek_lab/)
+LAB_ROOT = Path(__file__).resolve().parent.parent
+
+# Subdirectories
+SCRIPTS_DIR = LAB_ROOT / "scripts"
+NOTEBOOKS_DIR = LAB_ROOT / "notebooks"
+PCAP_DIR = LAB_ROOT / "pcaps"
+LOG_ROOT = LAB_ROOT / "logs"
+DATA_DIR = LAB_ROOT / "data" / "generated"
 
 # ---------------------------------------------------------
 # 1. Splunk status (demo-safe)
@@ -43,12 +50,12 @@ except Exception as e:
 print("\nChecking project directories and files...\n")
 
 checks = {
-    "Lab root": LAB_DIR,
+    "Lab root": LAB_ROOT,
     "Scripts directory": SCRIPTS_DIR,
     "Notebooks directory": NOTEBOOKS_DIR,
     "PCAP directory": PCAP_DIR,
     "Logs root": LOG_ROOT,
-    "Generated data directory": GENERATED_DIR,
+    "Generated data directory": DATA_DIR,
 }
 
 for name, path in checks.items():
@@ -78,7 +85,7 @@ else:
 # 6. Check for generated JSON/PNG
 # ---------------------------------------------------------
 print("\nChecking generated data...")
-if os.path.isdir(GENERATED_DIR) and any(os.listdir(GENERATED_DIR)):
+if os.path.isdir(DATA_DIR) and any(os.listdir(DATA_DIR)):
     print("Generated data found in data/generated/.")
 else:
     print("No generated data yet — run dns_to_json.py or dns_analysis.py.")

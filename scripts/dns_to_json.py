@@ -7,8 +7,14 @@ import json
 # ---------------------------------------------------------
 # Resolve directories from environment (clean + Docker‑friendly)
 # ---------------------------------------------------------
-GENERATED_DIR = os.getenv("GENERATED_DIR", "/zeek_lab/data/generated")
-os.makedirs(GENERATED_DIR, exist_ok=True)
+from pathlib import Path
+
+# Determine project root dynamically (zeek_lab/)
+LAB_ROOT = Path(__file__).resolve().parent.parent
+
+# Output directory for generated JSON
+GENERATED_DIR = LAB_ROOT / "data" / "generated"
+GENERATED_DIR.mkdir(parents=True, exist_ok=True)
 
 # ---------------------------------------------------------
 # Load Zeek log safely (auto-detect headers, skip metadata)

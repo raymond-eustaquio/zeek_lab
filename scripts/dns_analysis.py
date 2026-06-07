@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import pandas as pd
 import matplotlib.pyplot as plt
 import sys
@@ -7,10 +8,16 @@ import json
 # ---------------------------------------------------------
 # Resolve directories from environment (clean + Docker‑friendly)
 # ---------------------------------------------------------
-LOG_ROOT = os.getenv("LOG_ROOT", "/zeek_lab/logs")
-GENERATED_DIR = os.getenv("GENERATED_DIR", "/zeek_lab/data/generated")
+from pathlib import Path
 
-os.makedirs(GENERATED_DIR, exist_ok=True)
+# Determine project root dynamically (zeek_lab/)
+LAB_ROOT = Path(__file__).resolve().parent.parent
+
+# Logs + generated data directories
+LOG_ROOT = LAB_ROOT / "logs"
+GENERATED_DIR = LAB_ROOT / "data" / "generated"
+
+GENERATED_DIR.mkdir(parents=True, exist_ok=True)
 
 # ---------------------------------------------------------
 # Load Zeek DNS log safely (auto-detect headers, skip metadata)
