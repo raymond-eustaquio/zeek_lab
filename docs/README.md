@@ -74,6 +74,9 @@ zeek_lab/
 │
 └── (NO .git directory in repo)      # .git/ stays local, NEVER committed
 
+## Unified End‑to‑End Pipeline (Dark Mode)
+
+```mermaid
 flowchart TD
 
     %% -------------------------
