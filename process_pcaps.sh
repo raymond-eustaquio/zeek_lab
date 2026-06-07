@@ -7,8 +7,8 @@ set -e
 shopt -s nullglob
 
 # Directories (override via environment variables if needed)
-PCAP_DIR="${PCAP_DIR:-/pcaps}"
-LOG_ROOT="${LOG_ROOT:-/zeek_lab/logs}"
+PCAP_DIR="${PCAP_DIR:-$(pwd)/pcaps}"
+LOG_ROOT="${LOG_ROOT:-$(pwd)/logs}"
 
 mkdir -p "$LOG_ROOT"
 
