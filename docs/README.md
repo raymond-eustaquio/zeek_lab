@@ -33,6 +33,7 @@ The goal of this project is to show how to take **raw packet data → generate Z
 ---
 ## Project Structure
 ```
+
 zeek_lab/
 │
 │   # Pipeline (PCAP → Zeek → Analysis)
@@ -66,7 +67,10 @@ zeek_lab/
 │
 │   # Data (optional, if you want dns.json in repo)
 ├── data/
-│   └── dns.json                     # JSON output from dns_to_json.py (safe to commit)
+│   └── generated/                   # Auto-generated analysis artifacts
+│       ├── dns.json                 # JSON output from dns_to_json.py (safe to commit)
+│       ├── dns_summary.json         # Summary stats from dns_analysis.py
+│       └── dns_top_domains.png      # Top domains visualization from dns_analysis.py
 │
 │   # Documentation
 ├── flowchart.md                     # Pipeline flowchart (Mermaid)
