@@ -1,19 +1,30 @@
 #!/bin/bash
 
 # Batch Zeek PCAP Processor
-# Processes every .pcap in the current directory
+# Processes every .pcap inside $PCAP_DIR and writes logs to $LOG_ROOT
 
+set -e
 shopt -s nullglob
 
-for pcap in *.pcap; do
-    base="${pcap%.pcap}"
-    outdir="logs_${base}"
+# Directories (override via environment variables if needed)
+PCAP_DIR="${PCAP_DIR:-/pcaps}"
+LOG_ROOT="${LOG_ROOT:-/zeek_lab/logs}"
+
+mkdir -p "$LOG_ROOT"
+
+echo "Using PCAP_DIR: $PCAP_DIR"
+echo "Using LOG_ROOT: $LOG_ROOT"
+echo
+
+for pcap in "$PCAP_DIR"/*.pcap; do
+    base="$(basename "$pcap" .pcap)"
+    outdir="$LOG_ROOT/logs_${base}"
 
     echo "Processing $pcap → $outdir"
-
     mkdir -p "$outdir"
 
     zeek -C -r "$pcap" Log::default_logdir="$outdir"
 done
 
+echo
 echo "All PCAPs processed."

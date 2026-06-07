@@ -2,12 +2,21 @@
 import pandas as pd
 import sys
 import os
+import json
 
+# ---------------------------------------------------------
+# Resolve directories from environment (clean + Docker‑friendly)
+# ---------------------------------------------------------
+GENERATED_DIR = os.getenv("GENERATED_DIR", "/zeek_lab/data/generated")
+os.makedirs(GENERATED_DIR, exist_ok=True)
+
+# ---------------------------------------------------------
+# Load Zeek log safely (auto-detect headers, skip metadata)
+# ---------------------------------------------------------
 def load_zeek_log(path):
     if not os.path.exists(path):
         raise FileNotFoundError(f"Log not found: {path}")
 
-    # Extract Zeek header
     fields = None
     with open(path, "r") as f:
         for line in f:
@@ -18,7 +27,6 @@ def load_zeek_log(path):
     if fields is None:
         raise ValueError("No '#fields' header found — not a valid Zeek log.")
 
-    # Load TSV data, skipping metadata lines
     df = pd.read_csv(
         path,
         sep="\t",
@@ -31,13 +39,19 @@ def load_zeek_log(path):
 
     return df
 
+# ---------------------------------------------------------
+# Main entry point
+# ---------------------------------------------------------
 def main():
-    if len(sys.argv) != 3:
-        print("Usage: python3 dns_to_json.py <dns.log> <output.json>")
+    if len(sys.argv) != 2:
+        print("Usage: python3 dns_to_json.py <dns.log>")
         sys.exit(1)
 
     log_path = sys.argv[1]
-    out_path = sys.argv[2]
+
+    # Derive output filename automatically
+    base = os.path.splitext(os.path.basename(log_path))[0]
+    out_path = os.path.join(GENERATED_DIR, f"{base}.json")
 
     df = load_zeek_log(log_path)
 
@@ -46,5 +60,8 @@ def main():
 
     print(f"Saved JSON to {out_path}")
 
+# ---------------------------------------------------------
+# Run script
+# ---------------------------------------------------------
 if __name__ == "__main__":
     main()

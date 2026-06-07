@@ -16,9 +16,11 @@
 *.pcap
 *.pcapng
 
-# Zeek logs
-logs_college_dns_noise/
-*.log
+# Ignore 
+logs_*/
+data/generated/
+pcaps/
+
 
 # Generated images
 *.png
@@ -39,7 +41,3 @@ __pycache__/
 # OS junk
 .DS_Store
 Thumbs.db
-
-# JSON files (all forms)
-*.json
-*.json.*

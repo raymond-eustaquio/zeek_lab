@@ -1,14 +1,35 @@
 #!/bin/bash
 
-dir=$1
+# Pretty-print ALL Zeek logs in a directory
+# Uses environment variables for clean Docker + host usage
 
-if [ -z "$dir" ]; then
+set -e
+
+# Allow override via environment variable
+LOG_ROOT="${LOG_ROOT:-/zeek_lab/logs}"
+
+DIR="${1:-$LOG_ROOT}"
+
+if [ ! -d "$DIR" ]; then
+    echo "Error: Directory not found: $DIR"
     echo "Usage: ./pretty_all.sh <log_directory>"
     exit 1
 fi
 
-for log in $dir/*.log; do
+shopt -s nullglob
+
+for log in "$DIR"/*.log; do
     echo "==================== $log ===================="
-    ( sed -n 's/^#fields //p' "$log" ; zeek-cut < "$log" ) | column -t -s $'\t'
+    
+    (
+        # Print header from #fields
+        sed -n 's/^#fields //p' "$log"
+
+        # Print aligned rows
+        zeek-cut < "$log"
+    ) | column -t -s $'\t'
+
     echo
 done
+
+echo "Pretty-print complete."

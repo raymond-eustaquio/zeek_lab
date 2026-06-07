@@ -16,8 +16,12 @@ RUN apt update && \
 # Python dependencies for dns_analysis.py
 RUN pip3 install pandas matplotlib
 
-WORKDIR /zeek
+# Project directory inside container
+WORKDIR /zeek_lab
 
-COPY . /zeek
+# Only copy code, not data or PCAPs
+COPY scripts/ /zeek_lab/scripts/
+COPY integrations/ /zeek_lab/integrations/
+COPY process_pcaps.sh /zeek_lab/
 
 CMD ["/bin/bash"]
