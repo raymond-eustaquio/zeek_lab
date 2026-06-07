@@ -2,8 +2,6 @@
 import os
 import subprocess
 
-print("\n=== DEMO STATUS CHECK ===\n")
-
 # ---------------------------------------------------------
 # Resolve directories (Docker + host friendly)
 # ---------------------------------------------------------
