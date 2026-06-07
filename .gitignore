@@ -41,3 +41,12 @@ __pycache__/
 # OS junk
 .DS_Store
 Thumbs.db
+
+# More ignore
+.bashrc
+.bash_profile
+.profile
+.bash_history
+.ssh/
+.config/
+
