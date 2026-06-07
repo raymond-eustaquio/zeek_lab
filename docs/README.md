@@ -32,7 +32,6 @@ The goal of this project is to show how to take **raw packet data → generate Z
 
 ---
 ## Project Structure
-
 ```
 zeek_lab/
 │
@@ -56,7 +55,10 @@ zeek_lab/
 │       └── README.md                # Notes for future Splunk integration
 │
 │   # Logs (ignored in Git)
-├── logs_college_dns_noise/          # Zeek output logs generated from PCAPs (ignored via .gitignore)
+├── logs/                            # Root logs directory
+│   ├── logs_NetworkTraffic/         # Zeek logs from NetworkTraffic.pcap
+│   ├── logs_college_dns_noise/      # Zeek logs from college_dns_noise.pcap
+│   └── logs_traffic/                # Zeek logs from traffic.pcap
 │
 │   # Notebooks (your demo lives here)
 ├── notebooks/
