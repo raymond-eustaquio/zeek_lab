@@ -31,6 +31,9 @@ The workflow includes:
 The goal of this project is to show how to take **raw packet data → generate Zeek logs → parse them → analyze DNS behavior** using a combination of automation, scripting, Splunk ingestion, and interactive notebook analysis.
 
 ---
+## Project Structure
+
+```
 zeek_lab/
 │
 │   # Pipeline (PCAP → Zeek → Analysis)
@@ -73,6 +76,7 @@ zeek_lab/
 ├── .gitignore                       # Git ignore rules
 │
 └── (NO .git directory in repo)      # .git/ stays local, NEVER committed
+```
 
 ## Unified End‑to‑End Pipeline (Dark Mode)
 
