@@ -68,7 +68,7 @@ pcaps = [f for f in os.listdir(PCAP_DIR)] if os.path.isdir(PCAP_DIR) else []
 if any(f.endswith(".pcap") for f in pcaps):
     print("PCAPs found.")
 else:
-    print("No PCAPs found in pcaps/ — demo may not run.")
+    print("No PCAPs found in pcaps/  demo may not run.")
 
 # ---------------------------------------------------------
 # 5. Check for logs
@@ -77,7 +77,7 @@ print("\nChecking for Zeek logs...")
 if os.path.isdir(LOG_ROOT) and any(os.listdir(LOG_ROOT)):
     print("Logs found in logs/.")
 else:
-    print("No logs found — run process_pcaps.sh first.")
+    print("No logs found  run process_pcaps.sh first.")
 
 # ---------------------------------------------------------
 # 6. Check for generated JSON/PNG
@@ -86,6 +86,6 @@ print("\nChecking generated data...")
 if os.path.isdir(DATA_DIR) and any(os.listdir(DATA_DIR)):
     print("Generated data found in data/generated/.")
 else:
-    print("No generated data yet — run dns_to_json.py or dns_analysis.py.")
+    print("No generated data yet  run dns_to_json.py or dns_analysis.py.")
 
 print("\nDemo environment check complete.\n")

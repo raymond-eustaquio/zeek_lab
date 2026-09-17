@@ -6,7 +6,7 @@ import os
 import json
 
 # ---------------------------------------------------------
-# Resolve directories from environment (clean + Docker‑friendly)
+# Resolve directories from environment (clean + Dockerfriendly)
 # ---------------------------------------------------------
 from pathlib import Path
 
@@ -59,7 +59,7 @@ def load_dns_log(path):
 # ---------------------------------------------------------
 def plot_top_domains(df, basename):
     if "query" not in df.columns:
-        print("No 'query' field found — cannot plot top domains.")
+        print("No 'query' field found  cannot plot top domains.")
         return
 
     top = df["query"].value_counts().head(10)

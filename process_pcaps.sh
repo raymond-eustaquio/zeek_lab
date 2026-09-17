@@ -16,8 +16,11 @@ echo "Using PCAP_DIR: $PCAP_DIR"
 echo "Using LOG_ROOT: $LOG_ROOT"
 echo
 
-for pcap in "$PCAP_DIR"/*.pcap; do
-    base="$(basename "$pcap" .pcap)"
+for pcap in "$PCAP_DIR"/*.pcap "$PCAP_DIR"/*.pcapng; do
+    [ -e "$pcap" ] || continue  # skip if no files match
+
+    base="$(basename "$pcap")"
+    base="${base%.*}"  # strip extension
     outdir="$LOG_ROOT/logs_${base}"
 
     echo "Processing $pcap → $outdir"

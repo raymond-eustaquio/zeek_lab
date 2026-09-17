@@ -5,7 +5,7 @@ import os
 import json
 
 # ---------------------------------------------------------
-# Resolve directories from environment (clean + Docker‑friendly)
+# Resolve directories from environment (clean + Dockerfriendly)
 # ---------------------------------------------------------
 from pathlib import Path
 
@@ -31,7 +31,7 @@ def load_zeek_log(path):
                 break
 
     if fields is None:
-        raise ValueError("No '#fields' header found — not a valid Zeek log.")
+        raise ValueError("No '#fields' header found  not a valid Zeek log.")
 
     df = pd.read_csv(
         path,
@@ -61,7 +61,7 @@ def main():
 
     df = load_zeek_log(log_path)
 
-    # Write JSON‑lines (best for Splunk, jq, pandas)
+    # Write JSONlines (best for Splunk, jq, pandas)
     df.to_json(out_path, orient="records", lines=True)
 
     print(f"Saved JSON to {out_path}")
